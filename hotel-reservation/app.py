@@ -89,4 +89,4 @@ if st.button("RUN PREDICTION"):
             st.write(f"The {selected_model_name} algorithm predicts this booking is secure.")
             
     except Exception as e:
-        st.error(f"Error: {e}. Make sure the file for {selected_model_name} exists in your 'models/' folder.")
+        st.error(f"Error: {e}. Make sure the file for {selected_model_name} exists in your 'model/' folder.")
