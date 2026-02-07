@@ -22,7 +22,6 @@ def load_selected_model(model_name):
     base_path = os.path.dirname(__file__)
     
     # Construct the path to the 'model' folder inside that directory
-    # Note: Using 'model' (singular) as per your error message
     file_path = os.path.join(base_path, "model", model_mapping[model_name])
     
     # Check if the file exists before trying to load it
@@ -79,7 +78,13 @@ if st.button("RUN PREDICTION"):
     try:
         # Load the specific model chosen
         model = load_selected_model(selected_model_name)
-        scaler = joblib.load('model/standard_scaler.pkl')
+
+        # This finds the directory where app.py is located
+        base_path = os.path.dirname(__file__)
+    
+        # Construct the path to the 'model' folder inside that directory
+        file_path = os.path.join(base_path, "model", "standard_scaler.pkl")
+        scaler = joblib.load(file_path)
         
         # Prepare Data (Match your X_train column order exactly)
         input_data = pd.DataFrame([[
