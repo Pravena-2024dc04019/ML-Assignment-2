@@ -94,7 +94,7 @@ if st.button("RUN PREDICTION"):
         ]], columns=['no_of_adults', 'no_of_children', 'no_of_weekend_nights', 'no_of_week_nights', 'type_of_meal_plan', 'required_car_parking_space', 'room_type_reserved', 'lead_time', 'arrival_year', 'arrival_month', 'arrival_date', 'market_segment_type', 'repeated_guest', 'no_of_previous_cancellations', 'no_of_previous_bookings_not_canceled', 'avg_price_per_room', 'no_of_special_requests'])
 
         # SCALE THE DATA
-        input_data = scaler.transform(raw_input)
+        input_data = scaler.transform(input_data)
         
         # Predict
         prediction = model.predict(input_data)[0]
