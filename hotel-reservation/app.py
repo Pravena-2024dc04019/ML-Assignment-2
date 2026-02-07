@@ -9,7 +9,6 @@ st.set_page_config(page_title="Hotel Predictor Pro", page_icon="🏨")
 # --- ASSET LOADING ---
 @st.cache_resource
 def load_selected_model(model_name):
-    # Name of the models avaialable
     model_mapping = {
         "Random Forest": "Random_Forest.pkl",
         "XGBoost": "XGBoost.pkl",
@@ -18,7 +17,19 @@ def load_selected_model(model_name):
         "K-Nearest Neighbors": "KNN.pkl",
         "Naive Bayes": "Naive_Bayes.pkl"
     }
-    file_path = f"model/{model_mapping[model_name]}"
+    
+    # This finds the directory where app.py is located
+    base_path = os.path.dirname(__file__)
+    
+    # Construct the path to the 'model' folder inside that directory
+    # Note: Using 'model' (singular) as per your error message
+    file_path = os.path.join(base_path, "model", model_mapping[model_name])
+    
+    # Check if the file exists before trying to load it
+    if not os.path.exists(file_path):
+        # This will tell us exactly where Python is looking
+        raise FileNotFoundError(f"I am looking at this exact path: {file_path}")
+        
     return joblib.load(file_path)
 
 # --- SIDEBAR: MODEL SETTINGS ---
