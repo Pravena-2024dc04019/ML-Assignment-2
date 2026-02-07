@@ -53,7 +53,14 @@ with st.container():
     with col1:
         st.markdown("### 🕒 Timing")
         lead_time = st.number_input("Lead Time (Days)", 0, 500, 30)
-        arrival_month = st.slider("Arrival Month", 1, 12, 10)
+        # arrival_month = st.slider("Arrival Month", 1, 12, 10)
+        # Map month names to their integer values
+        month_options = [ "January", "February", "March", "April", "May", "June",
+                          "July", "August", "September", "October", "November", "December"]
+        month_mapping = {name: i + 1 for i, name in enumerate(month_options)}
+        selected_month_name = st.selectbox("Arrival Month", options=month_options, index=9)
+        arrival_month = month_mapping[selected_month_name]
+        
         
     with col2:
         st.markdown("### 💰 Pricing & Requests")
