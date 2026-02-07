@@ -77,8 +77,15 @@ with st.expander("More Booking Details"):
         weekend_nights = c2.number_input("Weekend Nights", 0, 10, 1)
         week_nights = c2.number_input("Week Nights", 0, 10, 2)
     with c3:
-        market_segment = c3.selectbox("Market Segment", [0, 1, 2, 3, 4])
-        parking = c3.selectbox("Parking?", [0, 1])
+        market_segment_mapping = { "Offline TA/TO": 0, "Online TA": 1, "Corporate": 2,
+                                   "Direct": 3, "Aviation": 4 }
+        selected_segment_name = c3.selectbox("Market Segment", options=list(market_segment_mapping.keys()))
+        market_segment = market_segment_mapping[selected_segment_name]
+        # market_segment = c3.selectbox("Market Segment", [0, 1, 2, 3, 4])
+        # parking = c3.selectbox("Parking?", [0, 1])
+        parking_labels = { "NO": 0, "YES" : 1 }
+        selected_parking_name = c3.selectbox("Parking Required ?", options=list(parking_labels.keys()))
+        parking = parking_labels[selected_parking_name]
 
 # --- PREDICTION LOGIC ---
 if st.button("RUN PREDICTION"):
