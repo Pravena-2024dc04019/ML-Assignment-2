@@ -77,20 +77,24 @@ with st.expander("More Booking Details"):
 # --- PREDICTION LOGIC ---
 if st.button("RUN PREDICTION"):
     try:
-        # 1. Load the specific model chosen
+        # Load the specific model chosen
         model = load_selected_model(selected_model_name)
+        scaler = joblib.load('model/standard_scaler.pkl')
         
-        # 2. Prepare Data (Match your X_train column order exactly)
+        # Prepare Data (Match your X_train column order exactly)
         input_data = pd.DataFrame([[
             adults, children, weekend_nights, week_nights, 0, parking, 
             0, lead_time, 2018, arrival_month, 15, market_segment, 
             0, 0, 0, avg_price, special_requests
         ]], columns=['no_of_adults', 'no_of_children', 'no_of_weekend_nights', 'no_of_week_nights', 'type_of_meal_plan', 'required_car_parking_space', 'room_type_reserved', 'lead_time', 'arrival_year', 'arrival_month', 'arrival_date', 'market_segment_type', 'repeated_guest', 'no_of_previous_cancellations', 'no_of_previous_bookings_not_canceled', 'avg_price_per_room', 'no_of_special_requests'])
 
-        # 3. Predict
+        # SCALE THE DATA
+        input_data = scaler.transform(raw_input)
+        
+        # Predict
         prediction = model.predict(input_data)[0]
         
-        # 4. Display Results
+        # Display Results
         st.markdown("---")
         if prediction == 1:
             st.error(f"### Result: High Cancellation Risk")
