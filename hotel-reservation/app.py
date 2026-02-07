@@ -37,7 +37,7 @@ st.sidebar.header("Model Settings")
 
 selected_model_name = st.sidebar.selectbox(
     "Choose Prediction Engine",
-    ["Random Forest", "XGBoost", "Logistic Regression", "Decision Tree", "K-Nearest Neighbors", "Naive Bayes"]
+    ["XGBoost", "Random Forest", "Logistic Regression", "Decision Tree", "K-Nearest Neighbors", "Naive Bayes"]
 )
 
 st.sidebar.info(f"Currently using: **{selected_model_name}**")
