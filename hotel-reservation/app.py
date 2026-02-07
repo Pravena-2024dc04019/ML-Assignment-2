@@ -18,7 +18,7 @@ def load_selected_model(model_name):
         "K-Nearest Neighbors": "KNN.pkl",
         "Naive Bayes": "Naive_Bayes.pkl"
     }
-    file_path = f"models/{model_mapping[model_name]}"
+    file_path = f"model/{model_mapping[model_name]}"
     return joblib.load(file_path)
 
 # --- SIDEBAR: MODEL SETTINGS ---
