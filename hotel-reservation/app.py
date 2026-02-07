@@ -9,9 +9,9 @@ st.set_page_config(page_title="Hotel Predictor Pro", page_icon="🏨")
 # --- ASSET LOADING ---
 @st.cache_resource
 def load_selected_model(model_name):
-    model_mapping = {
-        "Random Forest": "Random_Forest.pkl",
+    model_mapping = {        
         "XGBoost": "XGBoost.pkl",
+        "Random Forest": "Random_Forest.pkl",
         "Logistic Regression": "Logistic_Regression.pkl",
         "Decision Tree": "Decision_Tree.pkl",
         "K-Nearest Neighbors": "KNN.pkl",
@@ -53,7 +53,7 @@ with st.container():
     with col1:
         st.markdown("### 🕒 Timing")
         lead_time = st.number_input("Lead Time (Days)", 0, 500, 30)
-        # arrival_month = st.slider("Arrival Month", 1, 12, 10)
+        
         # Map month names to their integer values
         month_options = [ "January", "February", "March", "April", "May", "June",
                           "July", "August", "September", "October", "November", "December"]
@@ -81,8 +81,7 @@ with st.expander("More Booking Details"):
                                    "Direct": 3, "Aviation": 4 }
         selected_segment_name = c3.selectbox("Market Segment", options=list(market_segment_mapping.keys()))
         market_segment = market_segment_mapping[selected_segment_name]
-        # market_segment = c3.selectbox("Market Segment", [0, 1, 2, 3, 4])
-        # parking = c3.selectbox("Parking?", [0, 1])
+        
         parking_labels = { "NO": 0, "YES" : 1 }
         selected_parking_name = c3.selectbox("Parking Required ?", options=list(parking_labels.keys()))
         parking = parking_labels[selected_parking_name]
