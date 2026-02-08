@@ -95,19 +95,32 @@ with tabs[1]:
             # Ensure Column Match
             X_scaled = scaler.transform(X_raw)
             y_pred = model.predict(X_scaled)
+            y_probs = model.predict_proba(X_scaled)
             
             # Metrics
             acc = accuracy_score(y_true, y_pred)
+            auc = roc_auc_score(y_true, y_probs)
+            prec = precision_score(y_true, y_pred)
+            rec = recall_score(y_true, y_pred)
+            f1 = f1_score(y_true, y_pred)
             mcc = matthews_corrcoef(y_true, y_pred)
+
+            st.write("### Model Evaluation Metrics")
             
-            col_m1, col_m2 = st.columns(2)
-            col_m1.metric("Model Accuracy", f"{acc:.2%}")
-            col_m2.metric("Matthews Correlation (MCC)", f"{mcc:.3f}")
+            col1, col2, col3, col4, col5, col6 = st.columns(6)
+            col1.metric("Accuracy", f"{acc:.2%}")
+            col2.metric("AUC Score", f"{auc:.3f}")            
+            col3.metric("Precision", f"{prec:.2%}")
+            col4.metric("Recall", f"{rec:.2%}")
+            col5.metric("F1 Score", f"{f1:.3f}")
+            col6.metric("MCC", f"{mcc:.3f}")
+            # col_m1.metric("Model Accuracy", f"{acc:.2%}")
+            # col_m2.metric("Matthews Correlation (MCC)", f"{mcc:.3f}")
             
             # Confusion Matrix
             st.write("### Confusion Matrix")
             cm = confusion_matrix(y_true, y_pred)
-            fig, ax = plt.subplots(figsize=(2,2))
+            fig, ax = plt.subplots(figsize=(1,1))
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
             plt.xlabel('Predicted')
             plt.ylabel('Actual')
