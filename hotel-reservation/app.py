@@ -120,7 +120,7 @@ with tabs[1]:
             # Confusion Matrix
             st.write("### Confusion Matrix")
             cm = confusion_matrix(y_true, y_pred)
-            fig, ax = plt.subplots(figsize=(1,1))
+            fig, ax = plt.subplots(figsize=(1.5,1))
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
             plt.xlabel('Predicted')
             plt.ylabel('Actual')
