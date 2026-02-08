@@ -107,7 +107,7 @@ with tabs[1]:
             # Confusion Matrix
             st.write("### Confusion Matrix")
             cm = confusion_matrix(y_true, y_pred)
-            fig, ax = plt.subplots(figsize=(5,4))
+            fig, ax = plt.subplots(figsize=(2,2))
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
             plt.xlabel('Predicted')
             plt.ylabel('Actual')
@@ -116,3 +116,10 @@ with tabs[1]:
             # Classification Report
             st.write("### Classification Report")
             st.text(classification_report(y_true, y_pred))
+            
+            report_dict = classification_report(y_true, y_pred, output_dict=True)
+            report_df = pd.DataFrame(report_dict).transpose()
+            # Cleaning up the table for display
+            st.dataframe(report_df.style.format(precision=2).background_gradient(cmap='Greens', subset=['precision', 'recall', 'f1-score']))
+
+
