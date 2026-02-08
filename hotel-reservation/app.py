@@ -4,7 +4,7 @@ import joblib
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.metrics import accuracy_score, matthews_corrcoef, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, matthews_corrcoef, confusion_matrix, classification_report
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Hotel Predictor Pro", page_icon="🏨", layout="wide")
