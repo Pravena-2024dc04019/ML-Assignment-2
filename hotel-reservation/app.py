@@ -95,7 +95,7 @@ with tabs[1]:
             # Ensure Column Match
             X_scaled = scaler.transform(X_raw)
             y_pred = model.predict(X_scaled)
-            y_probs = model.predict_proba(X_scaled)
+            y_probs = model.predict_proba(X_scaled)[:, 1]
             
             # Metrics
             acc = accuracy_score(y_true, y_pred)
