@@ -111,15 +111,10 @@ with tabs[1]:
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
             plt.xlabel('Predicted')
             plt.ylabel('Actual')
-            st.pyplot(fig)
+            st.pyplot(fig, use_container_width=False)
             
             # Classification Report
             st.write("### Classification Report")
             st.text(classification_report(y_true, y_pred))
-            
-            report_dict = classification_report(y_true, y_pred, output_dict=True)
-            report_df = pd.DataFrame(report_dict).transpose()
-            # Cleaning up the table for display
-            st.dataframe(report_df.style.format(precision=2).background_gradient(cmap='Greens', subset=['precision', 'recall', 'f1-score']))
 
 
