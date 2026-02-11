@@ -39,7 +39,12 @@ selected_model_name = st.sidebar.selectbox(
 )
 
 GITHUB_CSV_URL = "https://github.com/Pravena-2024dc04019/ML-Assignment-2/blob/main/hotel-reservation/test.csv"
-st.sidebar.markdown(f"[🔗 Click here to download test.csv]({GITHUB_CSV_URL})")
+st.sidebar.markdown(f"[🔗 Click here to view test.csv]({GITHUB_CSV_URL})")
+
+st.sidebar.markdown(
+    f'<a href="{GITHUB_CSV_URL}" download="test_data.csv">Direct Download Link</a>', 
+    unsafe_allow_html=True
+)
 
 # --- MAIN UI ---
 st.title("🏨 Hotel Reservation Analysis & Evaluation")
