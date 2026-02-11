@@ -43,7 +43,7 @@ st.sidebar.markdown(f"[🔗 Click here to view test.csv]({GITHUB_CSV_URL})")
 
 # --- MAIN UI ---
 st.title("🏨 Hotel Reservation Analysis & Evaluation")
-tabs = st.tabs(["Single Prediction", "Batch Evaluation (CSV)"])
+tabs = st.tabs(["Single Reservation Prediction", "Batch Evaluation (CSV)"])
 
 # --- TAB 1: SINGLE PREDICTION ---
 with tabs[0]:
@@ -68,7 +68,7 @@ with tabs[0]:
         market_segment = market_map[c3.selectbox("Market Segment", list(market_map.keys()))]
         parking = 1 if c3.selectbox("Parking Required?", ["NO", "YES"]) == "YES" else 0
 
-    if st.button("Predict Single"):
+    if st.button("Predict Single Reservation"):
         model, scaler = load_assets(selected_model_name)
         features = ['no_of_adults', 'no_of_children', 'no_of_weekend_nights', 'no_of_week_nights', 'type_of_meal_plan', 'required_car_parking_space', 'room_type_reserved', 'lead_time', 'arrival_year', 'arrival_month', 'arrival_date', 'market_segment_type', 'repeated_guest', 'no_of_previous_cancellations', 'no_of_previous_bookings_not_canceled', 'avg_price_per_room', 'no_of_special_requests']
         input_df = pd.DataFrame([[adults, children, weekend_nights, week_nights, 0, parking, 0, lead_time, 2018, arrival_month, 15, market_segment, 0, 0, 0, avg_price, special_requests]], columns=features)
