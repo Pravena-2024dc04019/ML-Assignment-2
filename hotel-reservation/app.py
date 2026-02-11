@@ -41,10 +41,27 @@ selected_model_name = st.sidebar.selectbox(
 GITHUB_CSV_URL = "https://github.com/Pravena-2024dc04019/ML-Assignment-2/blob/main/hotel-reservation/test.csv"
 st.sidebar.markdown(f"[🔗 Click here to view test.csv]({GITHUB_CSV_URL})")
 
-st.sidebar.markdown(
-    f'<a href="{GITHUB_CSV_URL}" download="test_data.csv">Direct Download Link</a>', 
-    unsafe_allow_html=True
-)
+@st.cache_data
+def get_csv_from_github(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status() # Check if the URL is valid
+        return response.text
+    except Exception as e:
+        return None
+
+# 3. Create the button in the Sidebar
+csv_content = get_csv_from_github(GITHUB_RAW_URL)
+
+if csv_content:
+    st.sidebar.download_button(
+        label="📥 Download Test CSV",
+        data=csv_content,
+        file_name="test.csv",
+        mime="text/csv"
+    )
+else:
+    st.sidebar.error("Could not load the sample file from GitHub.")
 
 # --- MAIN UI ---
 st.title("🏨 Hotel Reservation Analysis & Evaluation")
