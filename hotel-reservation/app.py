@@ -38,6 +38,9 @@ selected_model_name = st.sidebar.selectbox(
     ["XGBoost", "Random Forest", "Logistic Regression", "Decision Tree", "K-Nearest Neighbors", "Naive Bayes"]
 )
 
+GITHUB_CSV_URL = "https://github.com/Pravena-2024dc04019/ML-Assignment-2/blob/main/hotel-reservation/test.csv"
+st.sidebar.markdown(f"[🔗 Click here to download test.csv]({GITHUB_CSV_URL})")
+
 # --- MAIN UI ---
 st.title("🏨 Hotel Reservation Analysis & Evaluation")
 tabs = st.tabs(["Single Prediction", "Batch Evaluation (CSV)"])
