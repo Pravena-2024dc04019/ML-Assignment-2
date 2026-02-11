@@ -51,7 +51,7 @@ def get_csv_from_github(url):
         return None
 
 # 3. Create the button in the Sidebar
-csv_content = get_csv_from_github(GITHUB_RAW_URL)
+csv_content = get_csv_from_github(GITHUB_CSV_URL)
 
 if csv_content:
     st.sidebar.download_button(
